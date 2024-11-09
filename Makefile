@@ -4,7 +4,7 @@ LIBC = ft_atoi.c ft_strnstr.c ft_strlen.c ft_toupper.c ft_bzero.c \
 					ft_tolower.c ft_strchr.c ft_strrchr.c ft_memchr.c ft_memcmp.c\
 						ft_strncmp.c ft_calloc.c ft_strdup.c\
 
-ADDITIONELS = ft_putchar_fd.c ft_itoa.c ft_strjoin.c ft_substr.c
+ADDITIONELS = ft_putchar_fd.c ft_itoa.c ft_strjoin.c ft_substr.c ft_strtrim.c
 
 OBJ = $(LIBC:.c=.o) $(ADDITIONELS:.c=.o)
 
@@ -22,13 +22,18 @@ $(NAME) : $(OBJ)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
+test : $(NAME) main.o
+	$(CC) $(CFLAGS) main.c -L. -lft -o test
+
+main.o : main.c $(NAME)
+	$(CC) $(CFLAGS) -c main.c
+
 clean : 
 	rm -f $(OBJ)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) main.o test
 
 re : fclean all
 
 .PHONY: all clean fclean re
-
