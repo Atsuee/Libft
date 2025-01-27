@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wailas <wailas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 11:38:14 by wailas            #+#    #+#             */
-/*   Updated: 2024/11/13 14:44:16 by wailas           ###   ########.fr       */
+/*   Created: 2024/11/15 16:15:12 by wailas            #+#    #+#             */
+/*   Updated: 2024/11/19 13:25:14 by wailas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	unsigned char	*result;
+	t_list	*element_list;
+	t_list	*new_list;
 
-	result = (unsigned char *) s;
-	while (n--)
+	new_list = NULL;
+	if (!lst || !f || !del)
+		return (NULL);
+	while (lst)
 	{
-		*result++ = '\0';
+		element_list = ft_lstnew(f(lst->content));
+		if (!element_list)
+		{
+			ft_lstclear(&new_list, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_list, element_list);
+		lst = lst->next;
 	}
+	return (new_list);
 }

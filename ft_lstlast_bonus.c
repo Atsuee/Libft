@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_last.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wailas <wailas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 11:38:14 by wailas            #+#    #+#             */
-/*   Updated: 2024/11/13 14:44:16 by wailas           ###   ########.fr       */
+/*   Created: 2024/11/15 13:33:46 by wailas            #+#    #+#             */
+/*   Updated: 2024/11/15 14:45:06 by wailas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	unsigned char	*result;
-
-	result = (unsigned char *) s;
-	while (n--)
-	{
-		*result++ = '\0';
-	}
+	if (lst == NULL)
+		return (NULL);
+	while (lst-> next != NULL)
+		lst = lst-> next;
+	return (lst);
 }

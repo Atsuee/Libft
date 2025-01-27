@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wailas <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: wailas <wailas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 11:44:50 by wailas            #+#    #+#             */
-/*   Updated: 2024/11/09 11:45:36 by wailas           ###   ########.fr       */
+/*   Updated: 2024/11/19 16:03:38 by wailas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t		i;
 	char		*total;
 	size_t		taille;
 
-	taille = count * size;
+	taille = nmemb * size;
 	total = malloc(taille);
 	if (total == NULL)
 		return (NULL);

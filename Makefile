@@ -4,9 +4,17 @@ LIBC = ft_atoi.c ft_strnstr.c ft_strlen.c ft_toupper.c ft_bzero.c \
 					ft_tolower.c ft_strchr.c ft_strrchr.c ft_memchr.c ft_memcmp.c\
 						ft_strncmp.c ft_calloc.c ft_strdup.c\
 
-ADDITIONELS = ft_putchar_fd.c ft_itoa.c ft_strjoin.c ft_substr.c ft_strtrim.c
+ADDITIONELS = ft_putchar_fd.c ft_itoa.c ft_strjoin.c ft_substr.c ft_strtrim.c\
+				ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_strmapi.c\
+					ft_split.c\
+
+BONUS =	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c\
+			ft_lstadd_back_bonus.c ft_lstdelone_bonus.c	ft_lstclear_bonus.c\
+				ft_lstiter_bonus.c ft_lstmap_bonus.c\
 
 OBJ = $(LIBC:.c=.o) $(ADDITIONELS:.c=.o)
+
+BONUS_OBJ = $(BONUS:.c=.o)
 
 NAME = libft.a
 
@@ -22,18 +30,17 @@ $(NAME) : $(OBJ)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
-test : $(NAME) main.o
-	$(CC) $(CFLAGS) main.c -L. -lft -o test
-
-main.o : main.c $(NAME)
-	$(CC) $(CFLAGS) -c main.c
+bonus: $(NAME) $(BONUS_OBJ)
+	ar -rsc $(NAME) $(BONUS_OBJ)
 
 clean : 
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean : clean
-	rm -f $(NAME) main.o test
+	rm -f $(NAME)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

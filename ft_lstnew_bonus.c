@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wailas <wailas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 14:30:20 by wailas            #+#    #+#             */
-/*   Updated: 2024/11/09 14:51:58 by wailas           ###   ########.fr       */
+/*   Created: 2024/11/15 12:01:52 by wailas            #+#    #+#             */
+/*   Updated: 2024/11/15 12:37:56 by wailas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h> 
-#include <string.h>
 
-int	main(void)
+t_list	*ft_lstnew(void *content)
 {
-	char	*result;
+	t_list	*liste;
 
-	result = ft_strjoin("Walid", "Hind");
-	printf("%s \n", result);
-	free(result);
-	return (0);
+	liste = malloc(sizeof(*liste));
+	if (liste == NULL)
+		return (NULL);
+	liste->content = content;
+	liste->next = NULL;
+	return (liste);
 }
